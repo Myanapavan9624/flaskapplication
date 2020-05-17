@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Edit Profile </title>
+<link rel="stylesheet" href={{ url_for('static', filename='css/editProfile.css') }} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+	body{
+	background-image: url('https://i.imgur.com/xhiRfL6.jpg');
+	}
+</style>
+<body>
+<div id="title">
+	<a href="/">
+		<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
+	</a>
+	<form>
+		<input id="searchBox" type="text" name="searchQuery">
+		<input id="searchButton" type="submit" value="Search">
+	</form>
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+			<a href="/account/orders">Your orders</a>
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
+			CART {{noOfItems}}
+		</a>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+	<h2>Edit profile</h2>
+	<form action="/updateProfile" method="POST">
+		<p>Email:<input type="email" name="email" class="form-control form-group" value={{profileData[1]}} readonly="readonly"></p>
+		<p>First Name:<input type="text" name="firstName" class="form-control form-group" value={{profileData[2]}}></p>
+		<p>Last Name: <input type="text" name="lastName" class="form-control form-group" value={{profileData[3]}}></p>
+		<p>Address 1: <input type="text" name="address1"class="form-control form-group" value={{profileData[4]}}></p>
+		<p>Address 2: <input type="text" name="address2" class="form-control form-group" value={{profileData[5]}}></p>
+		<p>Zip Code: <input type="text" name="zipcode" class="form-control form-group"value={{profileData[6]}}></p>
+		<p>City: <input type="text" name="city" class="form-control form-group" value={{profileData[7]}}></p>
+		<p>State: <input type="text" name="state" class="form-control form-group" value={{profileData[8]}}></p>
+		<p>Country: <input type="text" name="country" class="form-control form-group" value={{profileData[9]}}></p>
+		<p>Phone Number: <input type="text" name="phone" class="form-control form-group" value={{profileData[10]}}></p>
+		<input type="submit" value="Save">
+	</form>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+</div>
+</body>
+</html>
+

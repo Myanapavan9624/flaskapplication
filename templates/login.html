@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>	First flask app </title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+	body,html {
+    background-image: url('https://i.imgur.com/xhiRfL6.jpg');
+    height: 100%;
+}
+
+#profile-img {
+    height:180px;
+}
+.h-80 {
+    height: 80% !important;
+}
+</style>
+<body>
+	{% if error %}
+	  <div class="alert alert-danger alert-dismissible">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Error!</strong> Email/Password are Incorrect
+	  </div>
+	{% endif %}
+<div class="container h-80">
+	<div class="row align-items-center h-100">
+		<div class="col-3 mx-auto">
+			<div class="text-center">
+				<img id="profile-img" class="rounded-circle profile-img-card" src="https://i.imgur.com/6b6psnA.png" />
+				<p id="profile-name" class="profile-name-card"></p>
+				<form  action="/login" method="POST" class="form-signin">
+					<input type="text" name="email" id="inputPassword" class="form-control form-group" placeholder="Email" required autofocus>
+					<input type="password" name="password" id="inputPassword" class="form-control form-group" placeholder="password" required autofocus>
+					<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Enter</button>
+				</form>
+				<a class="btn btn-lg btn-primary btn-block btn-signin" href="/registerationForm">Register here</a>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

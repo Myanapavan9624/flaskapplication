@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Profile Home</title>
+<link rel="stylesheet" href={{ url_for('static', filename='css/profileHome.css') }} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+m<eta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="title">
+	<a href="/">
+		<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
+	</a>
+	<form>
+		<input id="searchBox" type="text" name="searchQuery">
+		<input id="searchButton" type="submit" value="Search">
+	</form>
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+			<a href="/account/orders">Your orders</a>
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
+			CART {{noOfItems}}
+		</a>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="card" style="width:400px;">
+			  <img class="card-img-top" style="height:200px" src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/avatar-512.png" alt="Card image" style="width:100%">
+			  <div class="card-body">
+				<a href="/account/profile/view" class="btn btn-primary">See Profile</a>
+			  </div>
+			</div>
+			</div>
+		<div class="col-sm-4">
+			<div class="card" style="width:400px;height:auto">
+			  <img class="card-img-top" style="height:200px" src="data:image/png;base64,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" alt="Card image" style="width:100%">
+			  <div class="card-body">
+				<a href="/account/profile/edit" class="btn btn-primary">Edit Profile</a>
+			  </div>
+			</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card" style="width:400px;height:auto;">
+				  <img class="card-img-top" style="height:200px" src="data:image/png;base64,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" alt="Card image" style="width:100%">
+				  <div class="card-body">
+					<a href="/account/profile/changePassword" class="btn btn-primary">Change Password</a>
+				  </div>
+				</div>
+				</div>
+	</div>
+</div>
+</body>
+</html>
+
